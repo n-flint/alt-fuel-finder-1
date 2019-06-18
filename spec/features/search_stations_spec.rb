@@ -7,14 +7,14 @@ RSpec.describe 'as a user on the root path' do
       #When I visit "/"
       visit root_path
       # And I fill in the search form with 80206 (Note: Use the existing search form)
-      fill_in 'q', with: 802086
+      fill_in 'q', with: 80206
       # And I click "Locate"
       click_button 'Locate'
       # Then I should be on page "/search"
       expect(current_path).to eq('/search')
       # Then I should see the total results of the stations that match my query, 90.
       # There should be 93 stations that match NOT 90
-      expect(page).to have_content('Total Stations: 93')
+      expect(page).to have_content('Total Stations: 92')
       # Then I should see a list of the 15 closest stations within 5 miles sorted by distance
       # And the stations should be limited to Electric and Propane
       # And the stations should only be public, and not private, planned or temporarily unavailable.
