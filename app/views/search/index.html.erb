@@ -1,4 +1,21 @@
-holla
-
 <h1>Total Stations: <%= facade.station_count %><h1>
+
+<section class ='stations'>
+  <h3>Closest 15 Stations:<h3>
+<%= require 'pry'; binding.pry %>
+  <% facade.stations.each do |station|%>
+  <section class='station'>
+    <%= station %>
+  </section>
+  <% end%>
+</section>
+
+
+
+
+
+
+
+
+
 
