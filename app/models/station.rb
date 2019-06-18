@@ -18,6 +18,4 @@ class Station
     @distance = station['distance']
     @access_times = station['access_days_time']
   end
-
-
 end
