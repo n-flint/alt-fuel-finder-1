@@ -9,15 +9,11 @@ class NrelFacade
   end
 
   def stations
-    conn = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV['NREL_KEY']}&location=#{@zip}&fuel_type=ELEC,LPG&access=public&status=E")
-    stations = JSON.parse(conn.body)['fuel_stations'].first(15)
+    service.stations
+  end
 
-    stations.map do |station|
-      Station.new(station)
+  private
+    def service
+      @_service ||= NrelService.new(@zip)
     end
-  end
-
-  def service
-    @_service ||= NrelService.new(@zip)
-  end
 end
