@@ -11,7 +11,7 @@ RSpec.describe 'as a user on the root path' do
       # And I click "Locate"
       click_button 'Locate'
       # Then I should be on page "/search"
-      expect(current_url).to eq('/search')
+      expect(current_path).to eq('/search')
       # Then I should see the total results of the stations that match my query, 90.
       # There should be 93 stations that match NOT 90
       expect(page).to have_content('Total Stations: 93')
@@ -33,4 +33,3 @@ RSpec.describe 'as a user on the root path' do
     end
   end
 end
-
