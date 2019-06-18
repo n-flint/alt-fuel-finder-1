@@ -2,10 +2,15 @@
 
 <section class ='stations'>
   <h3>Closest 15 Stations:<h3>
-<%= require 'pry'; binding.pry %>
+
   <% facade.stations.each do |station|%>
   <section class='station'>
-    <%= station %>
+    <h5>Name: <%= station.name %></h5>
+    <p>Address: <%= station.street_address %></p>
+    <p><%= station.city %>, <%= station.state %> <%= station.zip %></p>
+    <p>Fuel Types: <%= station.fuel_type %>
+    <p>Distance: <%= station.distance %>
+    <p>Access Times: <%= station.access_times %>
   </section>
   <% end%>
 </section>
