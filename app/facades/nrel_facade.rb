@@ -3,7 +3,11 @@ class NrelFacade
 
   def initialize(zip)
     @zip = zip
-    require 'pry'; binding.pry
+  end
+
+  def station_count
+    data = Farada.get()
+
   end
 
 
