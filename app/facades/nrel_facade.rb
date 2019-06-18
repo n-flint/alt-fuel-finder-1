@@ -4,9 +4,8 @@ class NrelFacade
     @zip = zip.to_i
   end
 
-  def station_count
-    conn = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV['NREL_KEY']}&location=#{@zip}&fuel_type=ELEC,LPG&access=public&status=E")
-    JSON.parse(conn.body)['total_results']
+  def total_stations
+    service.station_count
   end
 
   def stations
@@ -16,5 +15,9 @@ class NrelFacade
     stations.map do |station|
       Station.new(station)
     end
+  end
+
+  def service
+    @_service ||= NrelService.new(@zip)
   end
 end
