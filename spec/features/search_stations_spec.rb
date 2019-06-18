@@ -19,7 +19,7 @@ RSpec.describe 'as a user on the root path' do
       # And the stations should be limited to Electric and Propane
       # And the stations should only be public, and not private, planned or temporarily unavailable.
       within('.stations') do
-        expect(page).to have_content('Closet 15 Stations:')
+        expect(page).to have_content('Closest 15 Stations:')
         expect(page).to have_css('.station', count: 15)
         # And for each of the stations I should see Name, Address, Fuel Types, Distance, and Access Times
         within first('.station') do
