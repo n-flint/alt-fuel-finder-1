@@ -1,13 +1,21 @@
 class NrelFacade
-  attr_reader :zip
 
   def initialize(zip)
-    @zip = zip
+    @zip = zip.to_i
   end
 
   def station_count
-    data = Farada.get()
+    conn = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=xwzOg8efd6vKDqgsQEo9dx1CEE6QJ65ENaHKJQw9&location=#{@zip}&fuel_type=ELEC,LPG&access=public&status=E")
+    JSON.parse(conn.body)['total_results']
+  end
 
+  def stations
+    conn = Faraday.get("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=xwzOg8efd6vKDqgsQEo9dx1CEE6QJ65ENaHKJQw9&location=#{@zip}&fuel_type=ELEC,LPG&access=public&status=E")
+    stations = JSON.parse(conn.body)['fuel_stations'].first(15)
+    
+    stations.map do |station|
+      Station.new(station)
+    end
   end
 
 
